@@ -24,18 +24,22 @@ import QtGraphicalEffects 1.0
 FocusScope {
     id: sceneBackground
 
-    Image {
-        id: sceneImageBackground
-        anchors.fill: parent
-        fillMode: Image.PreserveAspectCrop
+    AnimatedImage {
+        id: animation
         source: config.Background
-        smooth: true
+        height: 1080; width: 1920
+        x: 0
+        fillMode: Image.PreserveAspectFit
+        smooth: false
+        cache: true
     }
 
-    RecursiveBlur {
-        anchors.fill: sceneImageBackground
-        source: sceneImageBackground
-        radius: config.Blur == "true" ? config.RecursiveBlurRadius : 0
-        loops: config.Blur == "true" ? config.RecursiveBlurLoops : 0
+    FastBlur {
+        id: blur
+        visible: wallpaper.configuration.Blur
+        anchors.fill: animation
+
+        source: animation
+        radius: 50
     }
 }
