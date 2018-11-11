@@ -27,7 +27,8 @@ FocusScope {
     AnimatedImage {
         id: animation
         source: config.Background
-        height: 1080; width: 1920
+        width: config.ScreenWidth
+        height: config.ScreenHeight 
         x: 0
         fillMode: Image.PreserveAspectFit
         smooth: false
